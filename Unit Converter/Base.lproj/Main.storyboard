@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,15 +13,56 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Unit_Converter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxJ-r4-YdO">
+                                <rect key="frame" x="175" y="95" width="25" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9d-Ob-xpR">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3EW-nh-NbL" id="7Sm-G0-CDR"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Rau-G5-Fld"/>
+                                </connections>
+                            </pickerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SeP-id-RTD">
+                                <rect key="frame" x="109" y="197" width="157" height="29"/>
+                                <segments>
+                                    <segment title="Fahrenheit"/>
+                                    <segment title="Celcius"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchTemperature:" destination="BYZ-38-t0r" eventType="valueChanged" id="hZX-nJ-CEu"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HxJ-r4-YdO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="DfG-tJ-YNf"/>
+                            <constraint firstItem="SeP-id-RTD" firstAttribute="top" secondItem="HxJ-r4-YdO" secondAttribute="bottom" constant="70" id="Ng0-Mn-Ihq"/>
+                            <constraint firstItem="j9d-Ob-xpR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cTi-9Z-lWg"/>
+                            <constraint firstItem="SeP-id-RTD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lFk-2b-C3K"/>
+                            <constraint firstItem="j9d-Ob-xpR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tMu-YL-OBL"/>
+                            <constraint firstItem="HxJ-r4-YdO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tg4-FO-SxN"/>
+                            <constraint firstItem="j9d-Ob-xpR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xtO-JI-Nlx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="alexOptions" destination="SeP-id-RTD" id="nKA-9G-eYd"/>
+                        <outlet property="temperatureLabel" destination="HxJ-r4-YdO" id="sfe-BM-eqY"/>
+                        <outlet property="temperaturePicker" destination="j9d-Ob-xpR" id="y5E-Gq-k6c"/>
+                        <outlet property="temperatureRange" destination="3EW-nh-NbL" id="L0Q-6g-R2H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="3EW-nh-NbL" userLabel="TemperatureRange" customClass="TemperatureRange" customModule="Unit_Converter" customModuleProvider="target"/>
             </objects>
         </scene>
     </scenes>
